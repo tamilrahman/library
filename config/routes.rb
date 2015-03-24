@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :students
   devise_for :librarians
   devise_for :admins
   # The priority is based upon order of creation: first created -> highest priority.
