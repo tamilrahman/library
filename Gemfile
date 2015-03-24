@@ -45,4 +45,4 @@ end
 
 gem "slim-rails"
 gem "twitter-bootstrap-rails"
-
+gem 'devise', :git => 'https://github.com/plataformatec/devise.git', :branch => 'lm-rails-4-2'
