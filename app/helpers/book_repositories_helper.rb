@@ -1,0 +1,2 @@
+module BookRepositoriesHelper
+end

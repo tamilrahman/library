@@ -1,0 +1,21 @@
+h1 Listing book_repositories
+
+table
+  thead
+    tr
+      th Name
+      th
+      th
+      th
+
+  tbody
+    - @book_repositories.each do |book_repository|
+      tr
+        td = book_repository.name
+        td = link_to 'Show', book_repository
+        td = link_to 'Edit', edit_book_repository_path(book_repository)
+        td = link_to 'Destroy', book_repository, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Book repository', new_book_repository_path
