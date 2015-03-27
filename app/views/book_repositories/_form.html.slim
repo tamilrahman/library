@@ -1,0 +1,12 @@
+= form_for @book_repository do |f|
+  - if @book_repository.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@book_repository.errors.count, "error")} prohibited this book_repository from being saved:"
+      ul
+        - @book_repository.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .actions = f.submit

@@ -1,0 +1,9 @@
+p#notice = notice
+
+p
+  strong Name:
+  = @book_repository.name
+
+= link_to 'Edit', edit_book_repository_path(@book_repository)
+'|
+= link_to 'Back', book_repositories_path
