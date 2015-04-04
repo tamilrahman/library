@@ -1,9 +1,17 @@
 Rails.application.routes.draw do
+  get 'librarian/index'
+
+  namespace :librarian do
+    resources :books
+  end
+
+  root "books#index"
+
   resources :authors
 
   resources :categories
 
-  resources :books
+  get 'books/index'
 
   resources :book_repositories
 

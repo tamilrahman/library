@@ -1,0 +1,26 @@
+.panel.panel-default
+  .panel-heading
+    | Listing Books
+  table.table
+    thead
+      tr
+        th Name
+        th Isbn no
+        th Quantity
+        th
+        th
+        th
+
+    tbody
+      - @books.each do |book|
+        tr
+          td = book.name
+          td = book.isbn_no
+          td = book.quantity
+          td = link_to 'Show', [:librarian, book]
+          td = link_to 'Edit', edit_librarian_book_path(book)
+          td = link_to 'Destroy',[:librarian, book], data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Book', new_librarian_book_path
