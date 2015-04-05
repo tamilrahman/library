@@ -1,4 +1,26 @@
 Rails.application.routes.draw do
+
+  mount ApplicationAPI => '/api'
+
+  get 'librarian', to: 'librarian#index'
+
+  namespace :librarian do
+    resources :books
+  end
+
+  root "books#index"
+
+  resources :authors
+
+  resources :categories
+
+  get 'books', to: 'books#index'
+
+  resources :book_repositories
+
+  devise_for :students
+  devise_for :librarians
+  devise_for :admins
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
