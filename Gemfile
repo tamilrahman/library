@@ -54,3 +54,4 @@ gem 'devise', :git => 'https://github.com/plataformatec/devise.git', :branch => 
 gem 'grape'
 gem 'grape-rabl'
 gem "hashie-forbidden_attributes"
+gem 'rails_12factor', group: :production
