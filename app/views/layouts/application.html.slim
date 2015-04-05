@@ -9,7 +9,11 @@ html
   body
   	nav.navbar.navbar-inverse
   		.container-fluid
-  			.collapse.navbar-collapse
-  				- if student_signed_in?
+  			-if student_signed_in?
+  				.collapse.navbar-collapse
   					= link_to 'Logout', destroy_student_session_path, :method => :delete, :class => "btn btn-default navbar-btn"
+  			-if librarian_signed_in?
+  				ul.nav.navbar-nav
+  					li= link_to 'Librarian Logout', destroy_librarian_session_path, :method => :delete, :class => "btn btn-default navbar-btn"
+  					li= link_to 'Books', librarian_books_path
     = yield

@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  get 'librarian/index'
+
+  mount ApplicationAPI => '/api'
+
+  get 'librarian', to: 'librarian#index'
 
   namespace :librarian do
     resources :books
@@ -11,7 +14,7 @@ Rails.application.routes.draw do
 
   resources :categories
 
-  get 'books/index'
+  get 'books', to: 'books#index'
 
   resources :book_repositories
 

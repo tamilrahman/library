@@ -50,3 +50,6 @@ gem 'therubyracer', :platform => :ruby
 gem "less-rails"
 gem "twitter-bootstrap-rails"
 gem 'devise', :git => 'https://github.com/plataformatec/devise.git', :branch => 'lm-rails-4-2'
+gem 'grape'
+gem 'grape-rabl'
+gem "hashie-forbidden_attributes"
