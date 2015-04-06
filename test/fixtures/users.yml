@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  reg_no: 1
+  password_digest: MyString
+  name: MyString
+  dept: MyString
+  year: 1
+  sign_flag: false
+
+two:
+  reg_no: 1
+  password_digest: MyString
+  name: MyString
+  dept: MyString
+  year: 1
+  sign_flag: false
