@@ -69,10 +69,10 @@ module V1
 
 			before do
 				set_current_user(params[:device_id])
+				authorize!
 			end
 			resource ':device_id' do
-				# Rails.logger.info "------------------#{@current_user.inspect}"
-				# success_response("check current_user")
+				mount BookAPI
 			end
 		end
 	end
