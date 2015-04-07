@@ -52,7 +52,7 @@ module V1
 			params do
 				requires :device_id, type: String
 			end
-			post 'logout' do
+			delete 'logout' do
 				@user = User.find_by(device_id: params[:device_id])
 				if !@user
 					failure_response("User not authendicated")
