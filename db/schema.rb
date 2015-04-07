@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150406100039) do
+ActiveRecord::Schema.define(version: 20150406120056) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -120,6 +120,7 @@ ActiveRecord::Schema.define(version: 20150406100039) do
     t.boolean  "sign_flag"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.string   "device_id"
   end
 
   add_index "users", ["reg_no"], name: "index_users_on_reg_no", unique: true
