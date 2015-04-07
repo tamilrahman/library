@@ -35,12 +35,12 @@ module V1
 			end
 			post 'login' do
 				@user = User.find_by(reg_no: params[:reg_no])
+				Rails.logger.info "------------------#{@user}"
 				if !@user
 					failure_response("Register number or Password incorrect")
 				else
 					if @user.authenticate(params[:password])
 						@user.update(sign_flag: true, device_id: params[:device_id])
-						set_current_user(params[:device_id])
 						Rails.logger.info "------------------#{@current_user.inspect}"
 						success_response("User Successfully Logged in")
 					else
@@ -48,12 +48,31 @@ module V1
 					end
 				end
 			end
+
+			params do
+				requires :device_id, type: String
+			end
+			post 'logout' do
+				@user = User.find_by(device_id: params[:device_id])
+				if !@user
+					failure_response("User not authendicated")
+				else
+					if @user.sign_flag?
+						@user.update(sign_flag: false, device_id: nil)
+						success_response("User successfully logged out")
+					else
+						failure_response("User not authendicated")
+					end
+				end
+			end
+
+
 			before do
 				set_current_user(params[:device_id])
 			end
-			get ':device_id/test_user' do
-				Rails.logger.info "------------------#{@current_user.inspect}"
-				success_response("check current_user")
+			resource ':device_id' do
+				# Rails.logger.info "------------------#{@current_user.inspect}"
+				# success_response("check current_user")
 			end
 		end
 	end
