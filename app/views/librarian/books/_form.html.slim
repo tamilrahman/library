@@ -1,18 +1,45 @@
-= form_for @book do |f|
-  - if @book.errors.any?
-    #error_explanation
-      h2 = "#{pluralize(@book.errors.count, "error")} prohibited this book from being saved:"
-      ul
-        - @book.errors.full_messages.each do |message|
-          li = message
+.row
+  .col-md-6
+    = form_for [:librarian, @book] do |f|
+      - if @book.errors.any?
+        #error_explanation
+          h2 = "#{pluralize(@book.errors.count, "error")} prohibited this book from being saved:"
+          ul
+            - @book.errors.full_messages.each do |message|
+              li = message
 
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :isbn_no
-    = f.text_field :isbn_no
-  .field
-    = f.label :quantity
-    = f.number_field :quantity
-  .actions = f.submit
+      .field.form-group
+        .row
+          .col-md-2
+            = f.label :name
+          .col-md-4
+            = f.text_field :name, class: "form-control"
+      .field.form-group
+        .row
+          .col-md-2
+            = f.label :isbn_no
+          .col-md-4
+            = f.text_field :isbn_no, class: "form-control"
+      .field
+        .row.form-group
+          .col-md-2
+            = f.label :quantity
+          .col-md-4
+            = f.number_field :quantity, class: "form-control" 
+      .field
+        = fields_for :category, @book.categories do |category|
+          .row.form-group
+            .col-md-2
+              = category.label :category_name
+            .col-md-4
+              = category.select(:name, Category.all.map {|category| [category.category_name]}, class: "form-control", id: "librarian_category")
+              / = select_tag "",  options_for_select(Category.all.map {|category| [category.category_name]}), id: "librarian_category" 
+      .field
+        = fields_for :author, @book.authors do |author|
+          .row.form-group
+            .col-md-2
+              = author.label :author_name
+            .col-md-4
+              = author.text_field :name, class: "form-control" 
+      
+      .actions = f.submit 'Add book', class: 'btn btn-default'

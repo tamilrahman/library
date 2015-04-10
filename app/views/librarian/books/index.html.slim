@@ -7,6 +7,8 @@
         th Name
         th Isbn no
         th Quantity
+        th Category
+        th Author
         th
         th
         th
@@ -17,6 +19,8 @@
           td = book.name
           td = book.isbn_no
           td = book.quantity
+          td = book.categories.first.category_name
+          td = book.authors.first.name
           td = link_to 'Show', [:librarian, book]
           td = link_to 'Edit', edit_librarian_book_path(book)
           td = link_to 'Destroy',[:librarian, book], data: {:confirm => 'Are you sure?'}, :method => :delete

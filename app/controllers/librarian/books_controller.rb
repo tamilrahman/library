@@ -26,10 +26,12 @@ class Librarian::BooksController < ApplicationController
   # POST /books.json
   def create
     @book = Book.new(book_params)
-
+    @category = Category.find_by(category_name: params[:category][:name])
     respond_to do |format|
       if @book.save
-        format.html { redirect_to @book, notice: 'Book was successfully created.' }
+        BookCategory.create(book_id: @book.id, category_id: @category.id)
+        @book.authors.create(name: params[:author][:name])
+        format.html { redirect_to [:librarian, @book], notice: 'Book was successfully created.' }
         format.json { render :show, status: :created, location: @book }
       else
         format.html { render :new }
@@ -57,7 +59,7 @@ class Librarian::BooksController < ApplicationController
   def destroy
     @book.destroy
     respond_to do |format|
-      format.html { redirect_to books_url, notice: 'Book was successfully destroyed.' }
+      format.html { redirect_to librarian_books_url, notice: 'Book was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
