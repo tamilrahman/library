@@ -1,0 +1,8 @@
+.row
+	.col-md-6.col-md-offset-3
+		h2 Login
+		br
+		= simple_form_for(:session, url: login_path) do |f|
+			= f.input :reg_no
+			= f.input :password
+			= f.button :submit, 'Login'

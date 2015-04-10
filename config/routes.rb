@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'sessions/new'
+
   mount ApplicationAPI => '/api'
 
   get 'librarian', to: 'librarian#index'
@@ -7,6 +9,12 @@ Rails.application.routes.draw do
   namespace :librarian do
     resources :books
   end
+
+  get    'login'   => 'sessions#new'
+
+  post   'login'   => 'sessions#create'
+  
+  delete 'logout'  => 'sessions#destroy'
 
   root "books#index"
 
@@ -18,7 +26,8 @@ Rails.application.routes.draw do
 
   resources :book_repositories
 
-  devise_for :students
+  resources :users
+
   devise_for :librarians
   devise_for :admins
   # The priority is based upon order of creation: first created -> highest priority.
