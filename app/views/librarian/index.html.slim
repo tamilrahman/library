@@ -1,2 +1,34 @@
-h1 Librarian#index
-p Find me in app/views/librarian/index.html.slim
+.container
+	.row
+		.col-md-6
+			h2 Lend the books
+			br
+			= simple_form_for @user_book,:url => lending_books_path, :method => :post do |f|
+				= f.simple_fields_for :book do |p|
+					=p.input :isbn_no
+				= f.simple_fields_for :user do |p|
+					=p.input :reg_no
+				=f.button :submit, 'Lend'
+br
+.container
+	.row
+		.col-md-12
+			.panel.panel-default
+			  .panel-heading
+			    | List of Lends
+			  table.table
+			    thead
+			      tr
+			        th Student name
+			        th Reg. no
+			        th Book name
+			        th ISBN no
+			        th Date to return book
+			    tbody
+			      - @user_books.each do |user_book|
+			        tr
+			          td = user_book.user.name
+			          td = user_book.user.reg_no
+			          td = user_book.book.name
+			          td = user_book.book.isbn_no
+			          td = user_book.date.strftime("%d-%m-%Y")

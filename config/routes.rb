@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   mount ApplicationAPI => '/api'
 
   get 'librarian', to: 'librarian#index'
-
+  post 'lending_books', to: 'librarian#lending_books'
   namespace :librarian do
     resources :books
   end

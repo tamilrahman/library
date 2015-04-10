@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
     if resource.role == "librarian"
-      librarian_books_path 
+      librarian_path 
     else resource.role == "student"
       books_path
    	end
